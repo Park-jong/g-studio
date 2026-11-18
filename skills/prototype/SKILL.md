@@ -1,6 +1,6 @@
 ---
 name: prototype
-description: gamemanager 2단계. docs/design.md의 핵심 루프를 의존성 없는 단일 HTML 파일(Canvas)로 빠르게 만들어 손으로 재미를 확인한다. "프로토타입 만들어줘", "빨리 한 번 돌려보자", "/prototype"처럼 요청할 때, 또는 new-game이 2단계로 안내할 때 사용.
+description: gamestudio 2단계. docs/design.md의 핵심 루프를 의존성 없는 단일 HTML 파일(Canvas)로 빠르게 만들어 손으로 재미를 확인한다. "프로토타입 만들어줘", "빨리 한 번 돌려보자", "/prototype"처럼 요청할 때, 또는 new-game이 2단계로 안내할 때 사용.
 ---
 
 # prototype
@@ -9,7 +9,7 @@ description: gamemanager 2단계. docs/design.md의 핵심 루프를 의존성 �
 
 ## 절차
 
-1. `docs/design.md` 1~2장을 읽는다. 없으면 `/gamemanager:game-concept`를 먼저 하자고 알리고 멈춘다.
+1. `docs/design.md` 1~2장을 읽는다. 없으면 `/gamestudio:game-concept`를 먼저 하자고 알리고 멈춘다.
 2. **범위 정하기** — 핵심 루프 중 프로토타입에 넣을 것 3~5개와 뺄 것을 한 줄씩 사용자에게 알리고 바로 진행한다 (승인을 기다리지 않는다).
    - 넣을 것: 플레이어의 핵심 행동, 최소 1종의 상대(적·장애물), 승패 조건, 화면 위 최소 HUD(수치 2~3개)
    - 뺄 것: 메뉴, 저장, 사운드, 성장, 여러 스테이지, 이미지
@@ -23,4 +23,4 @@ description: gamemanager 2단계. docs/design.md의 핵심 루프를 의존성 �
 5. **사용자 플레이 요청** — 파일 경로와 조작법을 알려주고, 플레이 후 아래를 알려 달라고 한다.
    - 재미있던 점 / 지루하거나 답답한 점 / 바꾸고 싶은 수치
 6. 사용자 피드백을 받으면 `docs/design.md` 9장 "프로토타입에서 배운 것"에 기록하고, 콘셉트·핵심 루프에 반영할 결정이 있으면 해당 장도 고친다. 프로토타입 수정은 사용자가 원할 때만 한다 (이 단계 안에서는 수정 가능, 3단계 시작 후에는 보존).
-7. `TODO.md`의 `## gamemanager 진행` 2단계를 `[x]`로 바꾸고, 다음은 `/gamemanager:scaffold`라고 알린 뒤 멈춘다.
+7. `TODO.md`의 `## gamestudio 진행` 2단계를 `[x]`로 바꾸고, 다음은 `/gamestudio:scaffold`라고 알린 뒤 멈춘다.

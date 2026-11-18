@@ -1,6 +1,6 @@
 {
-  "name": "gamemanager",
-  "version": "0.1.0",
+  "name": "gamestudio",
+  "version": "0.2.0",
   "description": "게임 개발 조직(디렉터→팀장→팀원)과 웹게임 개발 흐름(콘셉트 → 프로토타입 → 뼈대 → 설정 → 계획 → 개발 사이클 → 배포 → 스킨)을 하나로 묶은 플러그인. 조직도 패널·상태줄·알림, 타 팀 요청, 검증 문제 기록, Phaser 스타터 템플릿 포함",
   "author": { "name": "park" },
   "keywords": ["game", "phaser", "vite", "workflow", "agents"],

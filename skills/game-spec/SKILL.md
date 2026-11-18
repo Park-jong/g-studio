@@ -1,6 +1,6 @@
 ---
 name: game-spec
-description: gamemanager 4단계. 게임의 세부 설정(주인공·조작, 유닛·적·카드 등 등장 요소, 자원·경제, 판 밖 성장, 화면·조작, 아트·사운드 방향)을 정해 docs/design.md 3장 이후와 docs/numbers.md(세부 수치)를 작성한다. "게임 설정 짜자", "유닛 정하자", "수치 정리해줘", "/game-spec"처럼 요청할 때 사용.
+description: gamestudio 4단계. 게임의 세부 설정(주인공·조작, 유닛·적·카드 등 등장 요소, 자원·경제, 판 밖 성장, 화면·조작, 아트·사운드 방향)을 정해 docs/design.md 3장 이후와 docs/numbers.md(세부 수치)를 작성한다. "게임 설정 짜자", "유닛 정하자", "수치 정리해줘", "/game-spec"처럼 요청할 때 사용.
 ---
 
 # game-spec
@@ -21,7 +21,7 @@ description: gamemanager 4단계. 게임의 세부 설정(주인공·조작, 유
    - design.md와 numbers.md의 수치가 서로 맞는지
    - 정해지지 않은 값 목록 → `TODO.md`의 `## 결정 대기`에 추가 (섹션이 없으면 만든다)
    - 한 판 길이 목표와 수치가 대략 맞는지 (예: 적 체력 × 수 ÷ 아군 DPS)
-5. `TODO.md`의 `## gamemanager 진행` 4단계를 `[x]`로 바꾸고, 다음은 `/gamemanager:roadmap`이라고 알린 뒤 멈춘다.
+5. `TODO.md`의 `## gamestudio 진행` 4단계를 `[x]`로 바꾸고, 다음은 `/gamestudio:roadmap`이라고 알린 뒤 멈춘다.
 
 ## design.md 작성 기준
 

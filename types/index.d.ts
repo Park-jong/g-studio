@@ -3,7 +3,7 @@ export type RoleState = { status: RoleStatus; runs: number; task?: string; detai
 export type Org = {
   /** 디렉터에게 맡긴 작업 (없으면 개별 호출만 있었던 상태) */
   task: string
-  /** 역할 이름(agent 이름에서 gamemanager: 를 뺀 것) → 상태 */
+  /** 역할 이름(agent 이름에서 gamestudio: 를 뺀 것) → 상태 */
   roles: Record<string, RoleState>
   /** 실행된 subagent id → 역할 이름. 누가 누구를 불렀는지 판정하는 데 쓴다 */
   agents: Record<string, string>
@@ -31,7 +31,7 @@ export type Req = {
 
 declare module 'claude-code' {
   interface PluginState {
-    gamemanager: {
+    gamestudio: {
       org: Shaped<Org | null>
       /** .dev-team/requests.json 의 사본 (패널 표시용) */
       requests: Shaped<Req[]>

@@ -2,7 +2,7 @@
 
 __GAME_PITCH__
 
-기술 스택: Phaser 4 + TypeScript + Vite, 테스트 vitest. gamemanager 프레임워크로 만든 프로젝트다.
+기술 스택: Phaser 4 + TypeScript + Vite, 테스트 vitest. gamestudio 프레임워크로 만든 프로젝트다.
 
 ## 명령어
 | 명령 | 설명 |
@@ -22,7 +22,7 @@ __GAME_PITCH__
 | `docs/skins.md` | 스킨 등록·적용 설계 (스킨 단계에서 생성) |
 | `docs/verification-issues.md` | 검증에서 나온 문제와 재발 방지 규칙 (**코드 작성 전에 읽는다**, 반복될수록 ⚠️·🚨로 강조) |
 | `CHANGELOG.md` | 버전별 변경 |
-| `.dev-team/` | 팀별 로드맵·업무 기록, 타 팀 요청 (gamemanager가 관리) |
+| `.dev-team/` | 팀별 로드맵·업무 기록, 타 팀 요청 (gamestudio가 관리) |
 
 ## 폴더
 ```
@@ -65,10 +65,10 @@ docs/verification-issues.md  검증 문제 기록 (dev-cycle이 만들고 QA 팀
 
 ## 작업 규칙
 - 사용자가 시작하라고 한 `TODO.md` 항목만 진행하고, 끝나면 멈추고 보고한다.
-- 코드 작업은 `/gamemanager:dev-cycle`(개발 팀 구현 → QA 팀 검증·피드백, 최대 3사이클)로 진행한다. 사용자가 "개발만" 하라고 하면 따른다. 기획·아트까지 걸친 큰 작업은 `/dev-team <작업>`으로 맡긴다.
+- 코드 작업은 `/gamestudio:dev-cycle`(개발 팀 구현 → QA 팀 검증·피드백, 최대 3사이클)로 진행한다. 사용자가 "개발만" 하라고 하면 따른다. 기획·아트까지 걸친 큰 작업은 `/dev-team <작업>`으로 맡긴다.
 - 문서에 없는 값은 구현 전에 정해서 지시하고, 정한 내용은 `TODO.md`의 "코드가 정한 해석"에 남긴다.
 - 게임 규칙은 Phaser 비의존 모듈에 두고 vitest로 테스트한다. 난수는 `Rng`를 주입받는다.
 - 수치는 `src/data/`에 두고 `docs/numbers.md`와 일치시킨다. 씬은 입력·표시만, 캐릭터 표시는 `CharacterView`(스킨)로 한다.
 - 확인용 URL 파라미터를 새로 만들면 `src/core/debugParams.ts`와 이 파일의 "확인용 URL"에 함께 적는다.
 - 저장 데이터에 필드를 추가할 때 버전을 올리지 말고 sanitize에서 기본값을 채운다 (진행도 초기화 방지).
-- 커밋은 요청이 있을 때 `/gamemanager:commit-release`로 한다. 확인 화면에서 `커밋 후 push`를 고르면 push(=GitHub Pages 배포)와 Actions 결과 확인까지 한다.
+- 커밋은 요청이 있을 때 `/gamestudio:commit-release`로 한다. 확인 화면에서 `커밋 후 push`를 고르면 push(=GitHub Pages 배포)와 Actions 결과 확인까지 한다.

@@ -10,8 +10,8 @@ const spawn = ($: Engine, subagentType: string, prompt: string, parentAgentId?: 
     tool_use_id: 'toolu_test',
     prompt,
     description: subagentType,
-    subagentType: `gamemanager:${subagentType}`,
-    provider: { plugin: 'gamemanager', tier: 'user' },
+    subagentType: `gamestudio:${subagentType}`,
+    provider: { plugin: 'gamestudio', tier: 'user' },
     parentModel: 'sonnet',
     background: true,
     fork: false,
@@ -41,7 +41,7 @@ const engine = (on: On, seed: Record<string, string> = {}) => {
     return { value: text }
   })
   on('agent.spawn', (_, e) => {
-    prompts[e.subagentType.replace('gamemanager:', '')] = e.prompt
+    prompts[e.subagentType.replace('gamestudio:', '')] = e.prompt
     return { model: e.model ?? 'sonnet', agentId: `a${++n}` }
   })
   on('tool.call', { tool: 'Write' }, () => ({ result: 'written' }))

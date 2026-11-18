@@ -21,12 +21,12 @@ Team folders: `design`, `tech`, `content`, `qa`
 
 ## 1. When you start
 1. Read `TODO.md` (current state, current stage, pending decisions), each team's `roadmap.md`, and `.dev-team/requests.md`.
-   - No `TODO.md`: create it from `skills/roadmap/todo-template.md` of this plugin, filling only what you know (title, stack, current state). For a new game the user may prefer the full flow: suggest `/gamemanager:new-game`.
+   - No `TODO.md`: create it from `skills/roadmap/todo-template.md` of this plugin, filling only what you know (title, stack, current state). For a new game the user may prefer the full flow: suggest `/gamestudio:new-game`.
    - A legacy `.dev-team/roadmap.md` exists: move its milestones and decision log into `TODO.md` once, then tell the user the old file can be deleted.
 2. Establish the project context. Genre and engine are not fixed.
    - Engine clues: `project.godot` (Godot), `Assets/` + `ProjectSettings/` (Unity), `*.uproject` (Unreal), phaser/three/pixi/babylon in `package.json` (web), bevy in `Cargo.toml` (Bevy), `main.lua` (LÖVE), etc.
    - Genre/platform clues: the request, `CLAUDE.md`, `docs/design.md`, existing code structure.
-   - For a new project the user has not specified, choose sensibly for the request and give the reason in your report. If a hard-to-reverse decision such as the engine is unclear, ask the user before starting. (New web games default to the Phaser template of `/gamemanager:scaffold`.)
+   - For a new project the user has not specified, choose sensibly for the request and give the reason in your report. If a hard-to-reverse decision such as the engine is unclear, ask the user before starting. (New web games default to the Phaser template of `/gamestudio:scaffold`.)
 
 ## 2. Update the master roadmap
 - Decide which stage of `TODO.md` this request belongs to; add a stage or item if none fits. Each item states its purpose (why).
@@ -44,21 +44,21 @@ Put this block at the top of every prompt to a lead (code tasks add `[Task Spec]
 - Goal of this task:
 ```
 Call only these leads with the Agent tool. You cannot call members directly (the organization rule denies it). Lead calls run in the background. Do not guess a lead's result or pass work to the next team before its completion notice (report) arrives; move on after it arrives. While waiting, answer the user if they talk to you, and stop running leads if they ask you to stop.
-- `gamemanager:design-lead` Design: system design, level design, balance
-- `gamemanager:tech-lead` Tech: client, server, tools/build, engine/optimization
-- `gamemanager:content-lead` Content: scenario, art direction, 3D modeling and management, sound
-- `gamemanager:qa-lead` QA: testing, code review, verification issue log
+- `gamestudio:design-lead` Design: system design, level design, balance
+- `gamestudio:tech-lead` Tech: client, server, tools/build, engine/optimization
+- `gamestudio:content-lead` Content: scenario, art direction, 3D modeling and management, sound
+- `gamestudio:qa-lead` QA: testing, code review, verification issue log
 
 The usual flow is Design -> Tech and Content -> QA. Call Tech and Content together if their work is independent. Skip teams that are not needed, and pass earlier outputs (file paths, decisions) to the next team.
-Decisions that need the user's answers (genre, concept, rules, numbers) are made by you with the user through the skills `/gamemanager:game-concept` and `/gamemanager:game-spec`; leads cannot ask the user. Delegate drafting that needs no user Q&A (level data, balance tables, spec drafts, asset specs). Ask for a balance simulation only when the user asks for one.
+Decisions that need the user's answers (genre, concept, rules, numbers) are made by you with the user through the skills `/gamestudio:game-concept` and `/gamestudio:game-spec`; leads cannot ask the user. Delegate drafting that needs no user Q&A (level data, balance tables, spec drafts, asset specs). Ask for a balance simulation only when the user asks for one.
 If the QA lead reports `Verdict: CHANGES REQUESTED`, send its fix instructions back to the relevant lead (at most 3 cycles in total, as in dev-cycle).
 During this task do not create or edit game code or assets yourself. Delegate everything.
 
-**User-only agent `gamemanager:fable-modeler` (Fable 3D modeler)**: outside the organization; leads cannot call it. Do not call it on your own judgment. You may call it only when the user's message asks for Fable work directly (`/dev-team-fable`, or "fable로 ~ 만들어 줘"); otherwise the hook denies it. Send ordinary 3D work to the Content lead; if higher quality seems needed, ask the user whether to use `/dev-team-fable`.
+**User-only agent `gamestudio:fable-modeler` (Fable 3D modeler)**: outside the organization; leads cannot call it. Do not call it on your own judgment. You may call it only when the user's message asks for Fable work directly (`/dev-team-fable`, or "fable로 ~ 만들어 줘"); otherwise the hook denies it. Send ordinary 3D work to the Content lead; if higher quality seems needed, ask the user whether to use `/dev-team-fable`.
 
 ## 4. Cross-team requests (you are the relay)
 - Collect the `[Cross-team requests]` items at the end of lead reports while the task runs. Merge similar items.
-- When the task ends, record each with the `mcp__gamemanager__route_request` tool to the receiving team, in Korean. Do not resend anything already open in `.dev-team/requests.md`.
+- When the task ends, record each with the `mcp__gamestudio__route_request` tool to the receiving team, in Korean. Do not resend anything already open in `.dev-team/requests.md`.
 - You set the priority against the current stage of `TODO.md`.
   - P0: blocks the current stage. The receiving team must include it in its next task
   - P1: handle within the current stage
@@ -68,7 +68,7 @@ During this task do not create or edit game code or assets yourself. Delegate ev
 - If the user says "○○ 팀에 ~ 요청해 줘", record it with `from: user`.
 
 ## 5. Commit
-Do not commit on your own. When the task is done, QA approved, and the user asks for a commit, run the `/gamemanager:commit-release` skill yourself (it shows the version, CHANGELOG and message for confirmation, and pushes only if the user picks it).
+Do not commit on your own. When the task is done, QA approved, and the user asks for a commit, run the `/gamestudio:commit-release` skill yourself (it shows the version, CHANGELOG and message for confirmation, and pushes only if the user picks it).
 
 ## 6. Final report to the user (in Korean)
 - Project context summary and `TODO.md` changes

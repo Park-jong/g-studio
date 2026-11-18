@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.0] - 2026-11-18
+### Breaking
+- 플러그인 이름을 gamemanager에서 gamestudio로 바꿈. 스킬·에이전트 이름은 `gamestudio:`로, 요청 도구는 `mcp__gamestudio__route_request`·`mcp__gamestudio__update_request`로 바뀜. 설치했다면 `gamemanager@gamemanager`를 지우고 `gamestudio@gamestudio`로 다시 설치
+
+### Changed
+- TODO.md의 예전 `## gamemanager 진행` 섹션도 new-game이 새 이름으로 바꿔 이어서 진행
+- 대시보드 이름이 control_room으로 바뀐 것을 README에 반영
+
 ## [0.1.0] - 2026-11-18
 ### Added
 - 게임 개발 조직: 총괄 디렉터(메인 세션) → 기획·개발·콘텐츠·QA 팀장 → 팀원 14명, 사용자 전용 Fable 3D 모델러

@@ -1,4 +1,4 @@
-# gamemanager
+# gamestudio
 
 게임 개발 조직(총괄 디렉터 → 팀장 → 팀원)과 웹게임 개발 흐름(콘셉트 → 프로토타입 → 뼈대 → 설정 → 계획 → 개발 사이클 → 배포 → 스킨)을 하나로 묶은 Claude Code 플러그인입니다. 기존 `dev-team`(조직·기록·패널)과 `gamekit`(단계별 스킬·Phaser 템플릿·검증 루프)을 합쳤습니다.
 
@@ -9,16 +9,16 @@
 
 | 단계 | 스킬 | 산출물 |
 |---|---|---|
-| 진입점 | `/gamemanager:new-game` | 진행 상태 확인, 다음 단계 안내 |
-| 1. 장르·콘셉트 | `/gamemanager:game-concept` | `docs/design.md` 1~2장 |
-| 2. 프로토타입 | `/gamemanager:prototype` | `prototype/index.html` |
-| 3. 스택·뼈대 | `/gamemanager:scaffold` | Phaser 4 + TS + Vite 프로젝트 (템플릿 복사) |
-| 7. 배포 설정 | `/gamemanager:deploy-setup` | GitHub Actions → gh-pages (3단계 직후 권장) |
-| 4. 게임 설정 | `/gamemanager:game-spec` | `docs/design.md` 3장~, `docs/numbers.md` |
-| 5. 단계 계획 | `/gamemanager:roadmap` | `TODO.md` (전체 로드맵) |
-| 6. 개발 | `/gamemanager:dev-cycle` | 개발 팀 구현 → QA 팀 검증·피드백 (최대 3사이클) |
-| 커밋 | `/gamemanager:commit-release`, `/gamemanager:commit`, `/gamemanager:version` | 버전·CHANGELOG·커밋, 확인 화면에서 고르면 push(=배포)와 Actions 결과 확인 |
-| 8. 스킨 확장 | `/gamemanager:skin-system` | `docs/skins.md`, `docs/art/`, 스킨 등록·선택·이미지 적용 |
+| 진입점 | `/gamestudio:new-game` | 진행 상태 확인, 다음 단계 안내 |
+| 1. 장르·콘셉트 | `/gamestudio:game-concept` | `docs/design.md` 1~2장 |
+| 2. 프로토타입 | `/gamestudio:prototype` | `prototype/index.html` |
+| 3. 스택·뼈대 | `/gamestudio:scaffold` | Phaser 4 + TS + Vite 프로젝트 (템플릿 복사) |
+| 7. 배포 설정 | `/gamestudio:deploy-setup` | GitHub Actions → gh-pages (3단계 직후 권장) |
+| 4. 게임 설정 | `/gamestudio:game-spec` | `docs/design.md` 3장~, `docs/numbers.md` |
+| 5. 단계 계획 | `/gamestudio:roadmap` | `TODO.md` (전체 로드맵) |
+| 6. 개발 | `/gamestudio:dev-cycle` | 개발 팀 구현 → QA 팀 검증·피드백 (최대 3사이클) |
+| 커밋 | `/gamestudio:commit-release`, `/gamestudio:commit`, `/gamestudio:version` | 버전·CHANGELOG·커밋, 확인 화면에서 고르면 push(=배포)와 Actions 결과 확인 |
+| 8. 스킨 확장 | `/gamestudio:skin-system` | `docs/skins.md`, `docs/art/`, 스킨 등록·선택·이미지 적용 |
 
 사용자와 정해야 하는 결정(장르, 콘셉트, 규칙, 수치)은 메인 세션이 스킬로 직접 묻습니다. 팀장과 팀원은 백그라운드로 일해서 사용자에게 물을 수 없기 때문입니다.
 
@@ -63,7 +63,7 @@ agent 정의의 `model`과 hook 양쪽에 지정되어, 호출하는 쪽이 다�
 
 ### 사용자 전용 Fable agent
 
-일반 3D 모델 작업은 콘텐츠 팀의 3D 모델러가 하고, `gamemanager:fable-modeler`는 사용자가 `/dev-team-fable <요청>`을 쓰거나 메시지에 "fable"/"페이블"을 넣었을 때만 동작합니다. 허가는 그 메시지에 대한 응답 동안만 유효하고, 팀장이나 다른 agent가 부르면 항상 거부됩니다.
+일반 3D 모델 작업은 콘텐츠 팀의 3D 모델러가 하고, `gamestudio:fable-modeler`는 사용자가 `/dev-team-fable <요청>`을 쓰거나 메시지에 "fable"/"페이블"을 넣었을 때만 동작합니다. 허가는 그 메시지에 대한 응답 동안만 유효하고, 팀장이나 다른 agent가 부르면 항상 거부됩니다.
 
 ## 코드 작업 (dev-cycle)
 
@@ -89,7 +89,7 @@ agent 정의의 `model`과 hook 양쪽에 지정되어, 호출하는 쪽이 다�
 | `.dev-team/teams/<팀>/inbox.md` | 팀이 받은 요청 | 자동 생성 (도구로만 변경) |
 | `.dev-team/requests.md`, `requests.json` | 전체 요청 대장 | 자동 생성 (도구로만 변경) |
 
-hook은 조직 상태가 바뀔 때마다 `.dev-team/live/<세션 id>.json`에도 현황을 남깁니다(git 제외, 세션이 끝나면 `ended: true`). 옆 폴더의 대시보드(`../dashboard`)가 이 파일로 진행 중인 조직도를 보여 줍니다.
+hook은 조직 상태가 바뀔 때마다 `.dev-team/live/<세션 id>.json`에도 현황을 남깁니다(git 제외, 세션이 끝나면 `ended: true`). 옆 폴더의 대시보드 control_room(`../control_room`)가 이 파일로 진행 중인 조직도를 보여 줍니다.
 
 `.dev-team/`은 `/dev-team`을 처음 실행하거나 팀장이 처음 호출될 때 자동으로 만들어집니다. 쓰기 권한은 Edit/Write hook이 강제합니다. 팀장은 자기 기록만 쓰고 산출물은 팀원에게 맡깁니다.
 
@@ -110,7 +110,7 @@ hook은 조직 상태가 바뀔 때마다 `.dev-team/live/<세션 id>.json`에�
 
 ## 커밋
 
-`/gamemanager:commit-release`가 유일한 커밋 경로입니다: 버전 판단 → 메시지 생성 → **사용자 확인** → 버전 파일·CHANGELOG 갱신과 커밋 → (고르면) push와 배포 확인. 메시지 형식은 `/gamemanager:commit` 규칙입니다.
+`/gamestudio:commit-release`가 유일한 커밋 경로입니다: 버전 판단 → 메시지 생성 → **사용자 확인** → 버전 파일·CHANGELOG 갱신과 커밋 → (고르면) push와 배포 확인. 메시지 형식은 `/gamestudio:commit` 규칙입니다.
 
 ```
 ✨ feat: 한글 제목
@@ -148,24 +148,24 @@ tests/            hook 모듈 테스트 (claude plugin test)
 같은 PC (로컬 경로):
 ```
 /plugin marketplace add <이 폴더의 경로>
-/plugin install gamemanager@gamemanager
+/plugin install gamestudio@gamestudio
 ```
 
 다른 PC (GitHub에 올린 뒤):
 ```
 /plugin marketplace add <owner>/<repo>
-/plugin install gamemanager@gamemanager
+/plugin install gamestudio@gamestudio
 ```
 
-수정 후 반영: `/plugin marketplace update gamemanager` 후 Claude Code 재시작. 개발 중에는 `claude --plugin-dir <이 폴더의 경로>`로 설치 없이 시험할 수 있습니다.
+수정 후 반영: `/plugin marketplace update gamestudio` 후 Claude Code 재시작. 개발 중에는 `claude --plugin-dir <이 폴더의 경로>`로 설치 없이 시험할 수 있습니다.
 
 ## 이전 플러그인에서 옮길 때
 
-- `dev-team`·`gamekit` 플러그인은 비활성화하거나 지웁니다. 같이 켜 두면 같은 이름의 agent·스킬·명령어·hook이 두 벌 동작합니다. 프로젝트 `.claude/settings.json`의 `enabledPlugins`에 `dev-team@company-local`이 있으면 `gamemanager@gamemanager`로 바꿉니다.
+- `dev-team`·`gamekit` 플러그인은 비활성화하거나 지웁니다. 같이 켜 두면 같은 이름의 agent·스킬·명령어·hook이 두 벌 동작합니다. 프로젝트 `.claude/settings.json`의 `enabledPlugins`에 `dev-team@company-local`이나 예전 이름 `gamemanager@gamemanager`가 있으면 `gamestudio@gamestudio`로 바꿉니다.
 - 프로젝트에 직접 넣어 둔 `.claude/agents`, `.claude/skills`(같은 이름)도 지웁니다.
 - 기존 `.dev-team/` 기록(팀 로드맵·업무 기록·요청)은 그대로 이어서 씁니다. `.dev-team/roadmap.md`가 있으면 총괄 디렉터가 처음 작업할 때 내용을 `TODO.md`로 옮깁니다.
-- `TODO.md`의 `## gamekit 진행` 섹션은 `/gamemanager:new-game`이 `## gamemanager 진행`으로 이름을 바꿉니다.
-- 없어진 것: `committer` agent와 `/dev-team-commit`(→ `/gamemanager:commit-release`), `code-writer`·`code-verifier`·`feedback-synthesizer`(→ 개발 팀·QA 팀), `TODO.md`의 `낮음 문제` 목록(→ 타 팀 요청).
+- `TODO.md`의 `## gamekit 진행` 섹션은 `/gamestudio:new-game`이 `## gamestudio 진행`으로 이름을 바꿉니다.
+- 없어진 것: `committer` agent와 `/dev-team-commit`(→ `/gamestudio:commit-release`), `code-writer`·`code-verifier`·`feedback-synthesizer`(→ 개발 팀·QA 팀), `TODO.md`의 `낮음 문제` 목록(→ 타 팀 요청).
 
 ## 수정할 때
 

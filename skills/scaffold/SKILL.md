@@ -1,6 +1,6 @@
 ---
 name: scaffold
-description: gamemanager 3단계. 사용할 기술 스택을 정하고(기본 Phaser 4 + TypeScript + Vite + vitest), 스타터 템플릿을 복사해 프로젝트 뼈대·CLAUDE.md·git 저장소를 만든다. "프로젝트 세팅해줘", "뼈대 만들어줘", "스택 정하자", "/scaffold"처럼 요청할 때, 또는 new-game이 3단계로 안내할 때 사용.
+description: gamestudio 3단계. 사용할 기술 스택을 정하고(기본 Phaser 4 + TypeScript + Vite + vitest), 스타터 템플릿을 복사해 프로젝트 뼈대·CLAUDE.md·git 저장소를 만든다. "프로젝트 세팅해줘", "뼈대 만들어줘", "스택 정하자", "/scaffold"처럼 요청할 때, 또는 new-game이 3단계로 안내할 때 사용.
 ---
 
 # scaffold
@@ -40,12 +40,12 @@ description: gamemanager 3단계. 사용할 기술 스택을 정하고(기본 Ph
 
 1. `npm install` → `npm run typecheck` → `npm test` → `npm run build`를 실행해 모두 통과하는지 확인한다.
 2. 가능하면 `npm run dev`로 띄워 브라우저에서 타이틀 → 게임 화면, 방향키 이동, K 키 스킨 변경을 확인한다.
-3. git 저장소가 아니면 `git init -b main` 후, 사용자 확인을 받아 첫 커밋을 만든다 (`/gamemanager:commit-release` 규칙, 메시지 예: `🔧 chore: Phaser 프로젝트 뼈대 추가`).
+3. git 저장소가 아니면 `git init -b main` 후, 사용자 확인을 받아 첫 커밋을 만든다 (`/gamestudio:commit-release` 규칙, 메시지 예: `🔧 chore: Phaser 프로젝트 뼈대 추가`).
 
 ## 4. 마무리
 
-- `TODO.md`의 `## gamemanager 진행` 3단계를 `[x]`로 바꾸고, 맨 위에 `기술 스택: ...` 한 줄과 실행 명령을 적는다.
-- 보고: 스택, 만든 파일 요약, 실행한 검증 결과. 다음은 **`/gamemanager:deploy-setup`(배포 설정, 권장)** 또는 `/gamemanager:game-spec`이라고 알리고 멈춘다.
+- `TODO.md`의 `## gamestudio 진행` 3단계를 `[x]`로 바꾸고, 맨 위에 `기술 스택: ...` 한 줄과 실행 명령을 적는다.
+- 보고: 스택, 만든 파일 요약, 실행한 검증 결과. 다음은 **`/gamestudio:deploy-setup`(배포 설정, 권장)** 또는 `/gamestudio:game-spec`이라고 알리고 멈춘다.
 
 ## 규칙
 

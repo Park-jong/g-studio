@@ -9,8 +9,8 @@ allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git log:*), Bash(git t
 버전 판단과 커밋 메시지 생성을 묶어 **확인을 받은 뒤 실제로 커밋**하고, 사용자가 고르면 **push까지 해서 배포**한다.
 세부 규칙은 두 스킬 파일을 그대로 따른다. 이 파일은 순서와 예외만 정한다.
 
-- 버전 규칙: 이 스킬 폴더의 형제 폴더 `../version/SKILL.md` (gamemanager 플러그인의 version 스킬)
-- 메시지 규칙: 형제 폴더 `../commit/SKILL.md` (gamemanager 플러그인의 commit 스킬)
+- 버전 규칙: 이 스킬 폴더의 형제 폴더 `../version/SKILL.md` (gamestudio 플러그인의 version 스킬)
+- 메시지 규칙: 형제 폴더 `../commit/SKILL.md` (gamestudio 플러그인의 commit 스킬)
 
 시작할 때 두 파일을 읽는다. 둘이 충돌하면 이 파일의 내용이 우선한다.
 
@@ -36,7 +36,7 @@ allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git log:*), Bash(git t
    - 원격이 있으면 선택지: `커밋 후 push` / `커밋만` / `수정 요청`(Other로 입력) / `취소`.
      - `deploy.yml`이 있고 현재 브랜치가 워크플로의 배포 브랜치(보통 `main`)면, `커밋 후 push` 선택지 설명에 **"push하면 GitHub Pages에 배포됩니다"**라고 적고 이 선택지를 첫 번째(추천)로 둔다.
      - 배포 브랜치가 아니면 "push만 되고 배포는 되지 않음"이라고 적는다.
-   - 원격이 없으면 push 선택지를 빼고, push하려면 `/gamemanager:deploy-setup`으로 원격을 먼저 만들라고 한 줄로 알린다.
+   - 원격이 없으면 push 선택지를 빼고, push하려면 `/gamestudio:deploy-setup`으로 원격을 먼저 만들라고 한 줄로 알린다.
    - 사용자가 처음 요청에서 이미 "커밋하고 푸시해줘", "커밋하고 배포해줘"라고 했으면 그 선택을 기본으로 표시하되, 확인 질문은 생략하지 않는다.
 
    사용자가 수정을 요청하면 반영해서 다시 보여주고, 취소하면 아무것도 바꾸지 않고 멈춘다.
@@ -49,7 +49,7 @@ allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git log:*), Bash(git t
 
 6. **보고** — `git log -n 1 --stat`로 만들어진 커밋을 확인해 해시, 제목, 새 버전을 알려준다.
 
-7. **TODO.md 기록 (gamemanager 프로젝트)** — `TODO.md`의 완료 표에 이번 단계의 `버전 해시`(예: `0.3.0 abc1234`)를 적고 `## 현재 상태`의 버전을 갱신한다. 이 수정은 다음 커밋에 포함된다고 알려준다 (해시를 커밋 안에 넣을 수 없으므로).
+7. **TODO.md 기록 (gamestudio 프로젝트)** — `TODO.md`의 완료 표에 이번 단계의 `버전 해시`(예: `0.3.0 abc1234`)를 적고 `## 현재 상태`의 버전을 갱신한다. 이 수정은 다음 커밋에 포함된다고 알려준다 (해시를 커밋 안에 넣을 수 없으므로).
 
 8. **push (4단계에서 `커밋 후 push`를 고른 경우만)**
    1. 업스트림이 있으면 `git push`, 없으면 `git push -u origin <현재 브랜치>`.

@@ -4,7 +4,7 @@
 이 파일이 전체 로드맵이다 (단계 = 마일스톤). 총괄 디렉터(메인 세션)만 고친다.
 기술 스택: Phaser 4 + TypeScript + Vite, 테스트 vitest.
 
-## gamemanager 진행
+## gamestudio 진행
 (new-game이 만든 체크리스트를 그대로 유지)
 
 ## 진행 원칙

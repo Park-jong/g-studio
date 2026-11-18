@@ -115,8 +115,8 @@ const F = {
   inbox: (t: TeamKey) => `${ROOT}/teams/${t}/inbox.md`,
 }
 
-const TOOL_ROUTE = 'mcp__gamemanager__route_request'
-const TOOL_UPDATE = 'mcp__gamemanager__update_request'
+const TOOL_ROUTE = 'mcp__gamestudio__route_request'
+const TOOL_UPDATE = 'mcp__gamestudio__update_request'
 
 const PRIORITIES: Priority[] = ['P0', 'P1', 'P2', 'P3']
 const REQ_STATUSES: ReqStatus[] = ['open', 'accepted', 'in_progress', 'done', 'rejected']
@@ -193,7 +193,7 @@ const TEMPLATES: [string, string][] = [
   ]),
 ]
 
-const requests = atom({ plugin: 'gamemanager', key: 'requests' } as const, [], { shape: 'requests-1' })
+const requests = atom({ plugin: 'gamestudio', key: 'requests' } as const, [], { shape: 'requests-1' })
 
 const ensureScaffold = async ($: EngineInterface) => {
   for (const [path, text] of TEMPLATES) {
@@ -271,18 +271,18 @@ const PANE = 'dev-team'
 const TITLE = '개발 조직 현황'
 
 // 저장 형태가 바뀌면 shape 태그를 올려 이전 값을 버리게 한다.
-const org = atom({ plugin: 'gamemanager', key: 'org' } as const, null, { shape: 'org-1' })
+const org = atom({ plugin: 'gamestudio', key: 'org' } as const, null, { shape: 'org-1' })
 
 /**
  * Fable agent 호출 허가. 사용자 메시지가 들어올 때마다 그 메시지가 Fable 작업을 요청했는지로 다시 정한다.
  * 그래서 허가는 그 메시지에 대한 응답 동안만 유효하고, 다음 메시지에서 언급이 없으면 사라진다.
  */
-const fablePermit = atom({ plugin: 'gamemanager', key: 'fablePermit' } as const, false, { shape: 'fable-1' })
+const fablePermit = atom({ plugin: 'gamestudio', key: 'fablePermit' } as const, false, { shape: 'fable-1' })
 
 const blank = (task: string, agents: Record<string, string> = {}): Org => ({ task, roles: {}, agents })
 
 const roleOf = (subagentType: string | undefined): string | undefined => {
-  const m = /^gamemanager:(.+)$/.exec(subagentType ?? '')
+  const m = /^gamestudio:(.+)$/.exec(subagentType ?? '')
   return m && ALL_ROLES.includes(m[1]!) ? m[1] : undefined
 }
 
@@ -333,7 +333,7 @@ const refreshStatus = async ($: EngineInterface) => {
   $.ui.status(
     deepest.length === 0
       ? undefined
-      : `👷 gamemanager: ${deepest.map(r => LABEL[r]).join(', ')} 진행 중 (${running.length}명 작업 중)`,
+      : `👷 gamestudio: ${deepest.map(r => LABEL[r]).join(', ')} 진행 중 (${running.length}명 작업 중)`,
   )
 }
 
@@ -345,13 +345,13 @@ const guardWrite = async ($: EngineInterface, agentId: string | undefined, fileP
   const role = await callerRole($, agentId)
 
   if (rel !== null && (rel === 'requests.json' || rel === 'requests.md' || /^teams\/[^/]+\/inbox\.md$/.test(rel))) {
-    return `gamemanager: ${ROOT}/${rel} 는 자동 생성 파일입니다. 요청은 route_request / update_request 도구로만 바꿉니다.`
+    return `gamestudio: ${ROOT}/${rel} 는 자동 생성 파일입니다. 요청은 route_request / update_request 도구로만 바꿉니다.`
   }
   // 검증 문제 기록은 QA 팀장만 쓴다. 조직 밖 agent 는 건드리지 않는다.
   if (norm === ISSUES_FILE || norm.endsWith(`/${ISSUES_FILE}`)) {
     return role === undefined || ISSUES_WRITERS.includes(role)
       ? undefined
-      : `gamemanager: ${ISSUES_FILE} 는 QA 팀장만 고칩니다. 문제와 예방 규칙은 보고서에 적어 올리세요.`
+      : `gamestudio: ${ISSUES_FILE} 는 QA 팀장만 고칩니다. 문제와 예방 규칙은 보고서에 적어 올리세요.`
   }
   if (role === undefined || role === 'main') return undefined
 
@@ -359,11 +359,11 @@ const guardWrite = async ($: EngineInterface, agentId: string | undefined, fileP
   if (rel !== null) {
     if (team !== undefined && (rel === `teams/${team}/roadmap.md` || rel === `teams/${team}/worklog.md`)) return undefined
     return team !== undefined
-      ? `gamemanager: ${LABEL[role]}은 자기 팀 기록(.dev-team/teams/${team}/roadmap.md, worklog.md)만 씁니다. 다른 팀에 필요한 것은 [Cross-team requests] 로 올리세요.`
-      : `gamemanager: ${LABEL[role]}은 .dev-team 기록을 쓰지 않습니다. 기록은 팀장이 합니다. 다른 팀에 필요한 것은 [Cross-team requests] 로 보고하세요.`
+      ? `gamestudio: ${LABEL[role]}은 자기 팀 기록(.dev-team/teams/${team}/roadmap.md, worklog.md)만 씁니다. 다른 팀에 필요한 것은 [Cross-team requests] 로 올리세요.`
+      : `gamestudio: ${LABEL[role]}은 .dev-team 기록을 쓰지 않습니다. 기록은 팀장이 합니다. 다른 팀에 필요한 것은 [Cross-team requests] 로 보고하세요.`
   }
   if (team !== undefined) {
-    return `gamemanager: ${LABEL[role]}은 산출물을 직접 만들지 않습니다. 팀원에게 맡기세요.`
+    return `gamestudio: ${LABEL[role]}은 산출물을 직접 만들지 않습니다. 팀원에게 맡기세요.`
   }
   return undefined
 }
@@ -374,7 +374,7 @@ const readGuide = async ($: EngineInterface) => {
   try {
     return await $.fs.read(`${$.plugin.root}/guides/director.md`)
   } catch {
-    return '(Could not read guides/director.md. Delegate to the leads (gamemanager:design-lead, tech-lead, content-lead, qa-lead) with English prompts, record [Cross-team requests] in Korean with route_request, and report to the user in Korean.)'
+    return '(Could not read guides/director.md. Delegate to the leads (gamestudio:design-lead, tech-lead, content-lead, qa-lead) with English prompts, record [Cross-team requests] in Korean with route_request, and report to the user in Korean.)'
   }
 }
 
@@ -425,13 +425,13 @@ const issueLogNotice = async ($: EngineInterface) => {
 
 const fablePrompt = (request: string) =>
   [
-    `사용자가 Fable 3D 모델러 작업을 직접 요청했습니다. Agent 도구로 subagent_type "gamemanager:${FABLE}" 를 호출해 아래 요청을 맡겨 주세요.`,
+    `사용자가 Fable 3D 모델러 작업을 직접 요청했습니다. Agent 도구로 subagent_type "gamestudio:${FABLE}" 를 호출해 아래 요청을 맡겨 주세요.`,
     '프롬프트는 영어로 쓰고, 맨 앞에 [Project Context] 블록(장르, 엔진, 폴더 구조, 모델 명세가 있으면 그 경로)을 붙입니다.',
     '',
     `요청: ${request}`,
     '',
     '끝나면 영어 보고(모델 파일, 스크립트, 미리보기 경로, 측정값, 사람이 다듬을 부분)를 한국어로 요약해 알려 주세요.',
-    '보고에 [Cross-team requests] 가 있으면 우선순위를 정해 mcp__gamemanager__route_request 로 한국어로 기록합니다 (from 은 user).',
+    '보고에 [Cross-team requests] 가 있으면 우선순위를 정해 mcp__gamestudio__route_request 로 한국어로 기록합니다 (from 은 user).',
   ].join('\n')
 
 /** 사용자가 직접 쓴 부분만 본다. /dev-team 지시문은 지침 본문을 빼고 작업 줄만 */
@@ -495,7 +495,7 @@ const statusReport = async ($: EngineInterface, arg: string) => {
   const current = section(roadmap, '현재 상태')
   out.push('📋 dev-team 현재 작업', '')
   out.push(`■ 맡긴 작업: ${o?.task || '없음'}`)
-  out.push(...(current.length ? ['■ 현재 상태 (TODO.md)', ...current] : ['■ TODO.md 없음 — /gamemanager:new-game 또는 /gamemanager:roadmap 으로 만듭니다']))
+  out.push(...(current.length ? ['■ 현재 상태 (TODO.md)', ...current] : ['■ TODO.md 없음 — /gamestudio:new-game 또는 /gamestudio:roadmap 으로 만듭니다']))
   out.push('')
 
   const running = ALL_ROLES.filter(r => stateOf(o, r).status === 'running')
@@ -632,9 +632,9 @@ export const register: Register = on => {
   }).catch(($, e, next) => next(e))
 
   // ── 타 팀 요청: 메인 세션만 기록 ──
-  on('tool.call', { tool: /^mcp__gamemanager__route_request$/ }, async ($, e) => {
+  on('tool.call', { tool: /^mcp__gamestudio__route_request$/ }, async ($, e) => {
     if (e.agentId !== undefined) {
-      return { deny: 'gamemanager: 타 팀 요청은 총괄 디렉터(메인 세션)만 기록할 수 있습니다. 보고서 끝의 [Cross-team requests] 에 적어 올리세요.' }
+      return { deny: 'gamestudio: 타 팀 요청은 총괄 디렉터(메인 세션)만 기록할 수 있습니다. 보고서 끝의 [Cross-team requests] 에 적어 올리세요.' }
     }
     const a = e as unknown as Record<string, unknown>
     const str = (k: string) => (typeof a[k] === 'string' ? (a[k] as string).trim() : '')
@@ -681,10 +681,10 @@ export const register: Register = on => {
     $.ui.toast(`📨 ${id} ${TEAM_NAME[from]} → ${TEAM_NAME[to]} [${priority}] ${req.title}`)
 
     return { result: `${id} 기록 완료: ${TEAM_NAME[from]} → ${TEAM_NAME[to]}, ${priority}. 받는 팀 요청함: ${F.inbox(to as TeamKey)}` }
-  }).catch(() => ({ deny: 'gamemanager: 요청을 기록하는 중 오류가 났습니다. .dev-team/requests.json 을 확인하세요.' }))
+  }).catch(() => ({ deny: 'gamestudio: 요청을 기록하는 중 오류가 났습니다. .dev-team/requests.json 을 확인하세요.' }))
 
   // ── 요청 상태 변경: 받는 팀의 팀장(또는 메인 세션) ──
-  on('tool.call', { tool: /^mcp__gamemanager__update_request$/ }, async ($, e) => {
+  on('tool.call', { tool: /^mcp__gamestudio__update_request$/ }, async ($, e) => {
     const a = e as unknown as Record<string, unknown>
     const id = String(a.id ?? '').trim().toUpperCase()
     const status = String(a.status ?? '') as ReqStatus
@@ -700,10 +700,10 @@ export const register: Register = on => {
     const role = await callerRole($, e.agentId)
     const isMain = role === 'main'
     if (!isMain && (role === undefined || teamOfLead(role) !== req.to)) {
-      return { deny: `gamemanager: ${id} 는 ${TEAM_NAME[req.to]} 요청입니다. ${TEAM_NAME[req.to]}장만 상태를 바꿀 수 있습니다.` }
+      return { deny: `gamestudio: ${id} 는 ${TEAM_NAME[req.to]} 요청입니다. ${TEAM_NAME[req.to]}장만 상태를 바꿀 수 있습니다.` }
     }
     if (priority !== undefined && (!isMain || !PRIORITIES.includes(priority))) {
-      return { deny: 'gamemanager: 우선순위는 메인 세션만 바꿀 수 있습니다. 바꿔야 하면 보고서에 이유를 적으세요.' }
+      return { deny: 'gamestudio: 우선순위는 메인 세션만 바꿀 수 있습니다. 바꿔야 하면 보고서에 이유를 적으세요.' }
     }
     if ((status === 'rejected' || status === 'done') && note === undefined) {
       return { deny: '완료·반려에는 note(산출물 경로나 반려 이유)가 필요합니다.' }
@@ -725,7 +725,7 @@ export const register: Register = on => {
     }
 
     return { result: `${id}: ${REQ_STATUS_TEXT[req.status]} → ${REQ_STATUS_TEXT[status]}` }
-  }).catch(() => ({ deny: 'gamemanager: 요청 상태를 바꾸는 중 오류가 났습니다. .dev-team/requests.json 을 확인하세요.' }))
+  }).catch(() => ({ deny: 'gamestudio: 요청 상태를 바꾸는 중 오류가 났습니다. .dev-team/requests.json 을 확인하세요.' }))
 
   on('tool.call', { tool: 'Edit' }, async ($, e, next) => {
     const deny = await guardWrite($, e.agentId, e.file_path)
@@ -750,22 +750,22 @@ export const register: Register = on => {
 
     if (role === FABLE) {
       if (parent !== 'main') {
-        return { deny: `gamemanager 조직 규칙: ${LABEL[FABLE]}는 사용자 전용입니다. 팀장이나 다른 agent는 부를 수 없습니다. 3D 모델 작업은 gamemanager:modeler 에게 맡기세요.` }
+        return { deny: `gamestudio 조직 규칙: ${LABEL[FABLE]}는 사용자 전용입니다. 팀장이나 다른 agent는 부를 수 없습니다. 3D 모델 작업은 gamestudio:modeler 에게 맡기세요.` }
       }
       if (!(await read($, fablePermit))) {
         return {
           deny:
-            `gamemanager 조직 규칙: ${LABEL[FABLE]}는 사용자가 직접 요청했을 때만 부릅니다. 이번 사용자 메시지에는 Fable 요청이 없습니다. ` +
-            '3D 모델 작업은 콘텐츠 팀장(gamemanager:content-lead)에게 맡기거나, 사용자에게 /dev-team-fable 로 요청해 달라고 안내하세요.',
+            `gamestudio 조직 규칙: ${LABEL[FABLE]}는 사용자가 직접 요청했을 때만 부릅니다. 이번 사용자 메시지에는 Fable 요청이 없습니다. ` +
+            '3D 모델 작업은 콘텐츠 팀장(gamestudio:content-lead)에게 맡기거나, 사용자에게 /dev-team-fable 로 요청해 달라고 안내하세요.',
         }
       }
     }
 
     if (!(CALLABLE[parent] ?? []).includes(role)) {
-      const allowed = (CALLABLE[parent] ?? []).map(r => `gamemanager:${r}`).join(', ')
+      const allowed = (CALLABLE[parent] ?? []).map(r => `gamestudio:${r}`).join(', ')
       return {
         deny:
-          `gamemanager 조직 규칙: ${LABEL[parent]}은(는) ${LABEL[role]}을(를) 직접 부를 수 없습니다. ` +
+          `gamestudio 조직 규칙: ${LABEL[parent]}은(는) ${LABEL[role]}을(를) 직접 부를 수 없습니다. ` +
           (allowed !== ''
             ? `부를 수 있는 agent: ${allowed}`
             : parent === 'outside'
@@ -811,7 +811,7 @@ export const register: Register = on => {
     await refreshStatus($)
 
     return started
-  }).catch(($, e, next) => (next.called ? next(e) : { deny: 'gamemanager: 조직 규칙 검사 중 오류가 났습니다.' }))
+  }).catch(($, e, next) => (next.called ? next(e) : { deny: 'gamestudio: 조직 규칙 검사 중 오류가 났습니다.' }))
 
   // subagent 가 다시 일을 시작하면(자식 결과로 깨어남 등) 진행 중으로 되돌린다.
   on('turn.start', async ($, e, next) => {
@@ -859,7 +859,7 @@ export const register: Register = on => {
     )
 
     if (hasFailed) {
-      $.ui.toast(`✕ gamemanager: ${LABEL[role]} 작업이 실패했습니다`)
+      $.ui.toast(`✕ gamestudio: ${LABEL[role]} 작업이 실패했습니다`)
     } else {
       $.ui.toast(`✅ ${LABEL[role]} 완료${detail ? ` — ${detail}` : ''}`)
     }

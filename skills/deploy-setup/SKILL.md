@@ -1,6 +1,6 @@
 ---
 name: deploy-setup
-description: gamemanager 7단계. GitHub 저장소와 GitHub Pages 자동 배포(main push → Actions가 테스트·빌드 → gh-pages 브랜치)를 설정한다. 이후 개발 단계마다 커밋·push만 하면 배포된다. "배포 설정해줘", "GitHub Pages 올려줘", "/deploy-setup"처럼 요청할 때, 또는 scaffold 직후 사용. 배포 상태 확인("배포 됐어?")에도 사용.
+description: gamestudio 7단계. GitHub 저장소와 GitHub Pages 자동 배포(main push → Actions가 테스트·빌드 → gh-pages 브랜치)를 설정한다. 이후 개발 단계마다 커밋·push만 하면 배포된다. "배포 설정해줘", "GitHub Pages 올려줘", "/deploy-setup"처럼 요청할 때, 또는 scaffold 직후 사용. 배포 상태 확인("배포 됐어?")에도 사용.
 ---
 
 # deploy-setup
@@ -24,7 +24,7 @@ description: gamemanager 7단계. GitHub 저장소와 GitHub Pages 자동 배포
 ## 3. 저장소와 첫 배포 (각각 확인 후)
 
 1. `git remote -v`로 원격이 있는지 본다. 없으면 `gh auth status`로 로그인을 확인하고 (안 되어 있으면 사용자에게 `! gh auth login`을 안내), 저장소 이름(기본: `__GAME_ID__`와 같은 package 이름)과 공개 여부를 확인한 뒤 `gh repo create <이름> --public --source . --remote origin`을 실행한다. (비공개 저장소의 Pages는 유료 플랜이 필요하다고 알린다.)
-2. 워크플로 추가를 커밋한다 (`/gamemanager:commit-release` 규칙, 예: `🔧 chore: GitHub Pages 자동 배포 워크플로 추가`).
+2. 워크플로 추가를 커밋한다 (`/gamestudio:commit-release` 규칙, 예: `🔧 chore: GitHub Pages 자동 배포 워크플로 추가`).
 3. 사용자 확인 후 `git push -u origin main`.
 4. `gh run watch` 또는 `gh run list --workflow deploy.yml -L 1`로 실행 결과를 확인한다. 실패하면 `gh run view --log-failed`로 원인을 보여준다.
 5. **Pages 소스 설정** (처음 한 번): gh-pages 브랜치가 생긴 뒤, 확인을 받고 아래를 실행한다. 이미 설정되어 있으면 건너뛴다.
@@ -38,13 +38,13 @@ description: gamemanager 7단계. GitHub 저장소와 GitHub Pages 자동 배포
 
 - `TODO.md`의 `## 현재 상태`에 `배포: <주소> (main push → Actions가 빌드해 gh-pages 브랜치에 올림)`을 적는다.
 - `CLAUDE.md` 명령어 표 아래에 배포 방식 한 줄을 적는다.
-- `TODO.md`의 `## gamemanager 진행` 7단계를 `[x]`로 바꾼다.
+- `TODO.md`의 `## gamestudio 진행` 7단계를 `[x]`로 바꾼다.
 
 ## 개발 단계마다 (6단계 중)
 
 배포 설정이 끝난 뒤에는 단계가 끝날 때마다 아래 순서다. 이 스킬을 다시 부를 필요는 없다.
 
-1. dev-cycle 통과 → 2. `/gamemanager:commit-release` (버전 MINOR 올림) → 확인 화면에서 **`커밋 후 push`** 선택 → commit-release가 push하고 Actions 배포 결과(성공/실패, 배포 주소)까지 확인 → `TODO.md` 완료 표에 버전·커밋 기록
+1. dev-cycle 통과 → 2. `/gamestudio:commit-release` (버전 MINOR 올림) → 확인 화면에서 **`커밋 후 push`** 선택 → commit-release가 push하고 Actions 배포 결과(성공/실패, 배포 주소)까지 확인 → `TODO.md` 완료 표에 버전·커밋 기록
 
 ## 배포 상태 확인 요청일 때
 
