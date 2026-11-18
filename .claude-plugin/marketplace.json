@@ -1,0 +1,11 @@
+{
+  "name": "gamemanager",
+  "owner": { "name": "park" },
+  "plugins": [
+    {
+      "name": "gamemanager",
+      "source": "./",
+      "description": "게임 개발 조직 + 웹게임 개발 흐름 (스킬·에이전트·hook 모듈·Phaser 스타터 템플릿)"
+    }
+  ]
+}

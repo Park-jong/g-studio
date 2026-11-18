@@ -1,0 +1,9 @@
+# 모든 텍스트 파일을 저장소와 작업 폴더 모두 LF 로 고정
+* text=auto eol=lf
+
+# 바이너리
+*.png binary
+*.jpg binary
+*.glb binary
+*.fbx binary
+*.blend binary

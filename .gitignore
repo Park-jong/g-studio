@@ -1,0 +1,4 @@
+node_modules/
+.claude/settings.local.json
+# 게임 프로젝트에서 생기는 기록은 플러그인 저장소에 올리지 않음
+.dev-team/
