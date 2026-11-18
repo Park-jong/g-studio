@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.1] - 2026-11-19
+### Changed
+- new-game이 만드는 진행 체크리스트를 단계 번호순(1~8)으로 바꿈. 배포 설정(7)은 줄 위치와 상관없이 3단계 직후 권장
+- 기존 TODO.md의 체크리스트가 번호순이 아니면 new-game이 상태는 그대로 두고 줄 순서만 고침
+
 ## [0.2.0] - 2026-11-18
 ### Breaking
 - 플러그인 이름을 gamemanager에서 gamestudio로 바꿈. 스킬·에이전트 이름은 `gamestudio:`로, 요청 도구는 `mcp__gamestudio__route_request`·`mcp__gamestudio__update_request`로 바뀜. 설치했다면 `gamemanager@gamemanager`를 지우고 `gamestudio@gamestudio`로 다시 설치
