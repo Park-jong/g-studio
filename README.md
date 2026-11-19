@@ -9,7 +9,7 @@
 
 | 단계 | 스킬 | 산출물 |
 |---|---|---|
-| 진입점 | `/gamestudio:new-game` | 진행 상태 확인, 다음 단계 안내 |
+| 진입점 | `/gamestudio:next` | 새 게임 시작, 진행 상태 확인, 다음 단계 안내 |
 | 1. 장르·콘셉트 | `/gamestudio:game-concept` | `docs/design.md` 1~2장 |
 | 2. 프로토타입 | `/gamestudio:prototype` | `prototype/index.html` |
 | 3. 스택·뼈대 | `/gamestudio:scaffold` | Phaser 4 + TS + Vite 프로젝트 (템플릿 복사) |
@@ -164,7 +164,7 @@ tests/            hook 모듈 테스트 (claude plugin test)
 - `dev-team`·`gamekit` 플러그인은 비활성화하거나 지웁니다. 같이 켜 두면 같은 이름의 agent·스킬·명령어·hook이 두 벌 동작합니다. 프로젝트 `.claude/settings.json`의 `enabledPlugins`에 `dev-team@company-local`이나 예전 이름 `gamemanager@gamemanager`가 있으면 `gamestudio@gamestudio`로 바꿉니다.
 - 프로젝트에 직접 넣어 둔 `.claude/agents`, `.claude/skills`(같은 이름)도 지웁니다.
 - 기존 `.dev-team/` 기록(팀 로드맵·업무 기록·요청)은 그대로 이어서 씁니다. `.dev-team/roadmap.md`가 있으면 총괄 디렉터가 처음 작업할 때 내용을 `TODO.md`로 옮깁니다.
-- `TODO.md`의 `## gamekit 진행` 섹션은 `/gamestudio:new-game`이 `## gamestudio 진행`으로 이름을 바꿉니다.
+- `TODO.md`의 `## gamekit 진행` 섹션은 `/gamestudio:next`가 `## gamestudio 진행`으로 이름을 바꿉니다.
 - 없어진 것: `committer` agent와 `/dev-team-commit`(→ `/gamestudio:commit-release`), `code-writer`·`code-verifier`·`feedback-synthesizer`(→ 개발 팀·QA 팀), `TODO.md`의 `낮음 문제` 목록(→ 타 팀 요청).
 
 ## 수정할 때

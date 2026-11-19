@@ -495,7 +495,7 @@ const statusReport = async ($: EngineInterface, arg: string) => {
   const current = section(roadmap, '현재 상태')
   out.push('📋 dev-team 현재 작업', '')
   out.push(`■ 맡긴 작업: ${o?.task || '없음'}`)
-  out.push(...(current.length ? ['■ 현재 상태 (TODO.md)', ...current] : ['■ TODO.md 없음 — /gamestudio:new-game 또는 /gamestudio:roadmap 으로 만듭니다']))
+  out.push(...(current.length ? ['■ 현재 상태 (TODO.md)', ...current] : ['■ TODO.md 없음 — /gamestudio:next 또는 /gamestudio:roadmap 으로 만듭니다']))
   out.push('')
 
   const running = ALL_ROLES.filter(r => stateOf(o, r).status === 'running')

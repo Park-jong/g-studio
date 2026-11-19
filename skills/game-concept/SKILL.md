@@ -1,6 +1,6 @@
 ---
 name: game-concept
-description: gamestudio 1단계. 새 웹게임의 장르와 콘셉트를 사용자와 정해 docs/design.md의 1장(콘셉트)과 2장(핵심 루프)을 작성한다. "장르 정하자", "게임 콘셉트 잡아줘", "/game-concept"처럼 요청할 때, 또는 new-game이 1단계로 안내할 때 사용.
+description: gamestudio 1단계. 새 웹게임의 장르와 콘셉트를 사용자와 정해 docs/design.md의 1장(콘셉트)과 2장(핵심 루프)을 작성한다. "장르 정하자", "게임 콘셉트 잡아줘", "/game-concept"처럼 요청할 때, 또는 next가 1단계로 안내할 때 사용.
 ---
 
 # game-concept

@@ -5,7 +5,7 @@
 기술 스택: Phaser 4 + TypeScript + Vite, 테스트 vitest.
 
 ## gamestudio 진행
-(new-game이 만든 체크리스트를 그대로 유지)
+(next가 만든 체크리스트를 그대로 유지)
 
 ## 진행 원칙
 - 사용자가 시작하라고 한 항목만 진행하고, 끝나면 멈추고 보고한다.

@@ -21,7 +21,7 @@ Team folders: `design`, `tech`, `content`, `qa`
 
 ## 1. When you start
 1. Read `TODO.md` (current state, current stage, pending decisions), each team's `roadmap.md`, and `.dev-team/requests.md`.
-   - No `TODO.md`: create it from `skills/roadmap/todo-template.md` of this plugin, filling only what you know (title, stack, current state). For a new game the user may prefer the full flow: suggest `/gamestudio:new-game`.
+   - No `TODO.md`: create it from `skills/roadmap/todo-template.md` of this plugin, filling only what you know (title, stack, current state). For a new game the user may prefer the full flow: suggest `/gamestudio:next`.
    - A legacy `.dev-team/roadmap.md` exists: move its milestones and decision log into `TODO.md` once, then tell the user the old file can be deleted.
 2. Establish the project context. Genre and engine are not fixed.
    - Engine clues: `project.godot` (Godot), `Assets/` + `ProjectSettings/` (Unity), `*.uproject` (Unreal), phaser/three/pixi/babylon in `package.json` (web), bevy in `Cargo.toml` (Bevy), `main.lua` (LÖVE), etc.

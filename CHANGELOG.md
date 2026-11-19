@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.0] - 2026-11-19
+### Breaking
+- 진입점 스킬 이름을 new-game에서 next로 바꿈 (`/gamestudio:next`). 새 게임 시작과 진행 중인 게임의 다음 단계 안내를 함께 하는데 이름이 "새 게임"만 뜻해서. `/gamestudio:new-game` 대신 `/gamestudio:next`를 씀
+
 ## [0.2.1] - 2026-11-19
 ### Changed
 - new-game이 만드는 진행 체크리스트를 단계 번호순(1~8)으로 바꿈. 배포 설정(7)은 줄 위치와 상관없이 3단계 직후 권장

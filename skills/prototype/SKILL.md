@@ -1,6 +1,6 @@
 ---
 name: prototype
-description: gamestudio 2단계. docs/design.md의 핵심 루프를 의존성 없는 단일 HTML 파일(Canvas)로 빠르게 만들어 손으로 재미를 확인한다. "프로토타입 만들어줘", "빨리 한 번 돌려보자", "/prototype"처럼 요청할 때, 또는 new-game이 2단계로 안내할 때 사용.
+description: gamestudio 2단계. docs/design.md의 핵심 루프를 의존성 없는 단일 HTML 파일(Canvas)로 빠르게 만들어 손으로 재미를 확인한다. "프로토타입 만들어줘", "빨리 한 번 돌려보자", "/prototype"처럼 요청할 때, 또는 next가 2단계로 안내할 때 사용.
 ---
 
 # prototype

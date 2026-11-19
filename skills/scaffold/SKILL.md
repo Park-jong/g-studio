@@ -1,6 +1,6 @@
 ---
 name: scaffold
-description: gamestudio 3단계. 사용할 기술 스택을 정하고(기본 Phaser 4 + TypeScript + Vite + vitest), 스타터 템플릿을 복사해 프로젝트 뼈대·CLAUDE.md·git 저장소를 만든다. "프로젝트 세팅해줘", "뼈대 만들어줘", "스택 정하자", "/scaffold"처럼 요청할 때, 또는 new-game이 3단계로 안내할 때 사용.
+description: gamestudio 3단계. 사용할 기술 스택을 정하고(기본 Phaser 4 + TypeScript + Vite + vitest), 스타터 템플릿을 복사해 프로젝트 뼈대·CLAUDE.md·git 저장소를 만든다. "프로젝트 세팅해줘", "뼈대 만들어줘", "스택 정하자", "/scaffold"처럼 요청할 때, 또는 next가 3단계로 안내할 때 사용.
 ---
 
 # scaffold
